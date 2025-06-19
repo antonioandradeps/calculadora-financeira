@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Financeiro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px); /* Ajusta para centralizar na tela */
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        p strong {
+            color: #0056b3;
+        }
+        .output-box {
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .lucro {
+            color: #28a745; /* Verde para lucro positivo */
+            font-weight: bold;
+        }
+        .prejuizo {
+            color: #dc3545; /* Vermelho para prejuízo */
+            font-weight: bold;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .footer-note {
+            margin-top: 40px;
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Relatório de Faturamento e Despesa</h1>
+
+        <div class="output-box">
+            <p><strong>Faturamento:</strong> R$ {{ "%.2f"|format(dados.faturamento) }}</p>
+            <p><strong>Despesa:</strong> R$ {{ "%.2f"|format(dados.despesa) }}</p>
+            <p><strong>Lucro:</strong> <span class="{% if dados.lucro > 0 %}lucro{% else %}prejuizo{% endif %}">R$ {{ "%.2f"|format(dados.lucro) }}</span></p>
+            <p><strong>Prejuízo:</strong> <span class="{% if dados.prejuizo > 0 %}prejuizo{% else %}lucro{% endif %}">R$ {{ "%.2f"|format(dados.prejuizo) }}</span></p>
+        </div>
+
+        <a href="{{ url_for('index') }}" class="back-button">Calcular Novamente</a>
+
+        <p class="footer-note">Os valores acima foram calculados pela sua aplicação Python com Flask.</p>
+    </div>
+</body>
+</html>

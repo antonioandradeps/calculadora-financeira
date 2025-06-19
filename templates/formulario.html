@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px); /* Ajusta para centralizar na tela */
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #495057;
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-sizing: border-box; /* Inclui padding na largura total */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .footer-note {
+            margin-top: 40px;
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calcular Lucro/Prejuízo</h1>
+
+        {# Exibe mensagem de erro se houver #}
+        {% if erro %}
+            <p class="error-message">{{ erro }}</p>
+        {% endif %}
+
+        <form action="/calcular" method="POST">
+            <div class="form-group">
+                <label for="faturamento">Faturamento (R$):</label>
+                <input type="number" id="faturamento" name="faturamento" placeholder="Ex: 5000" required step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="despesas">Despesas (R$):</label>
+                <input type="number" id="despesas" name="despesas" placeholder="Ex: 1300" required step="0.01">
+            </div>
+            <button type="submit">Calcular</button>
+        </form>
+
+        <p class="footer-note">Preencha os campos e clique em "Calcular" para ver o resultado.</p>
+    </div>
+</body>
+</html>
